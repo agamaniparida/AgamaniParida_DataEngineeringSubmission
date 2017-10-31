@@ -149,17 +149,23 @@ def main_func():
              print("There is no value in the input value of values could not be extracted")
         else:
             for i in d:
-                if i[15]=='':
-                    #print(i[0],i[10],i[13],i[14])
-                    localLst=[i[0],i[10],i[13],i[14]]
-                    inputList.append(localLst)  
+                try:
+                    #print(i[15])
+                    if not i[15] :
+                        #print(i[0],i[10],i[13],i[14])
+                        localLst=[i[0],i[10],i[13],i[14]]
+                        inputList.append(localLst) 
+                except Exception as h:
+                    #print("Error Occured in reading row"+str(h))
+                    continue
+            #print(inputList)
         try:
             medianvals_by_date(inputList)          
             medianvals_by_zip(inputList)
         except Exception as f:
             print("Error Occured in Invoking the functions" +str(f))
-    except:
-        print("Error Occured In Running the main function")
+    except Exception as g:
+        print("Error Occured In Running the main function" +str(g))
     
 
 if sys.argv[0] and sys.argv[1] and sys.argv[2] and sys.argv[3]:
